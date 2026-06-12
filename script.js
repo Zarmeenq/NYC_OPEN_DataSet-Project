@@ -99,69 +99,32 @@ async function init(){
 
 
 
-function arrestByRace() {
+function updateChart() {
 
-  let b = 0, wh = 0, bh = 0, ap = 0, w = 0;
+    let chartType = document.getElementById("chartType").value;
 
-  for (let i = 0; i < data.length; i++) {
-    let arrest = data[i];
+    let columns = [
+        ["<18", boroughData["<18"]],
+        ["18-24", boroughData["18-24"]],
+        ["25-44", boroughData["25-44"]],
+        ["45-64", boroughData["45-64"]]
+    ];
 
-    if (arrest.perp_race == "BLACK") {
-      b++;
-    } else if (arrest.perp_race == "WHITE HISPANIC") {
-      wh++;
-    } else if (arrest.perp_race == "BLACK HISPANIC") {
-      bh++;
-    } else if (arrest.perp_race == "ASIAN / PACIFIC ISLANDER") {
-      ap++;
-    } else if (arrest.perp_race == "WHITE") {
-      w++;
-    }
-  }
+    document.getElementById("analysisText").innerHTML =
+        "This chart compares arrest counts by age group. The 18-24 age group currently has the highest arrest count in this sample dataset.";
 
-  let chartData = [
-    ["BLACK", b],
-    ["WHITE HISPANIC", wh],
-    ["BLACK HISPANIC", bh],
-    ["ASIAN / PACIFIC ISLANDER", ap],
-    ["WHITE", w]
-  ];
+    chart.destroy();
 
-  let chartType = document.getElementById("chartType").value;
+    chart = c3.generate({
+        bindto: "#chart",
 
-  displayChart(chartData, "chart", chartType);
-}
+        data: {
+            columns: columns,
+            type: chartType
+        },
 
-
-function arrestByAgeGroup() {
-
-  let a = 0, b = 0, c = 0, d = 0, e = 0;
-
-  for (let i = 0; i < data.length; i++) {
-    let arrest = data[i];
-
-    if (arrest.age_group == "<18") {
-      a++;
-    } else if (arrest.age_group == "18-24") {
-      b++;
-    } else if (arrest.age_group == "25-44") {
-      c++;
-    } else if (arrest.age_group == "45-64") {
-      d++;
-    } else if (arrest.age_group && arrest.age_group != "(null)") {
-      e++;
-    }
-  }
-
-  let chartData2 = [
-    ["<18", a],
-    ["18-24", b],
-    ["25-44", c],
-    ["45-64", d],
-    ["Other", e]
-  ];
-
-  let chartType = document.getElementById("chartType").value;
-
-  displayChart(chartData2, "chart", chartType);
+        donut: {
+            title: "Arrests"
+        }
+    });
 }
