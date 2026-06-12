@@ -1,0 +1,162 @@
+
+/* ALL */
+html,body{
+  margin:0 auto;
+  font-family:system-ui; 
+}
+.container{
+  display:flex;
+  padding:10px;
+}
+.center{
+  justify-content:center;
+  align-items:center;
+}
+
+nav{
+  background-color:cornflowerblue;
+}
+nav a{
+  color:black;
+  padding:10px;
+  flex:1;
+  text-decoration:none;
+  text-align:center;
+}
+nav a:hover{
+  color:white;
+  border-bottom: 2px solid rgb(255, 255, 255) 
+}
+
+/* Page 1: Home PAge */
+
+#banner{
+  background-color:rgb(41, 41, 131);
+  color:rgb(255, 0, 0);
+  font-size: 35px;
+  font-weight: bold ;
+
+  background-image: url("Images/car2.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100% ;
+  height: 700px;
+
+}
+#footer{
+  background-color:cornflowerblue;
+  color:white;
+  /*position:fixed;*/
+  left: 0;
+  right: 0;
+  bottom:0px;
+}
+ 
+#a{
+  border: solid;
+  background-color: rgba(58, 56, 65, 0.856);
+  font-size: 20px;
+  border-radius: 20px;
+  text-align:center;
+  display:flex;
+  flex-wrap:wrap;
+}
+
+#facts{
+  padding-top: 30px;
+}
+
+#facts img{
+  height: 300px;
+  width: 500px;
+  border-radius: 5px;
+  padding-right: 20px;
+}
+/* Page 2 */
+
+#banner2{
+  background-color:rgb(26, 26, 80);
+  color:yellow;
+}
+#footer2{
+  background-color:cornflowerblue;
+  color:white;
+  /*position:fixed;*/
+  left: 0;
+  right: 0;
+  bottom:0px;
+}
+
+#result{
+  color:yellow;
+  text-align: left;
+}
+.card{
+  flex:3;
+  margin:10px;
+  padding:10px;
+  border:1px solid gray;
+  text-align:center;
+  box-shadow:2px 2px 2px black;
+  border-radius:2px;
+}
+
+.highlight{
+  font-style:italic;
+  color:blue;
+}
+
+.heading{
+  font-weight:bold;
+}
+
+.button{
+  text-decoration:none;
+  background-color:blue;
+  color:white;
+  border-radius:4px;
+  padding:6px;
+  box-shadow:2px 2px 2px rgb(31, 31, 30);
+}
+
+.button:hover{
+  background-color:cornflowerblue;
+}
+
+.fitted{
+  max-width:200px;
+  min-width:200px;
+  height: 350px;
+}
+
+.card img{
+  height:100px; 
+}
+
+#output{
+  display:flex;
+  flex-wrap:wrap;
+  font-size: smaller;
+  align-items: center;
+}
+
+#output :hover{
+  background-color:lightblue;
+  color: midnightblue;
+}
+
+#leftPanel{
+  flex:1;
+}
+
+#rightPanel{
+  flex:2;
+  background-color: rgb(26, 26, 80);
+  color: white;
+}
+
+/* Page 3 */
+
+#banner3{
+  background-color:rgb(26, 26, 80);
+  color:yellow;
+}

@@ -1,0 +1,150 @@
+<label>Chart Type:</label>
+<select id="chartType">
+    <option value="bar">Bar Chart</option>
+    <option value="pie">Pie Chart</option>
+    <option value="donut">Donut Chart</option>
+</select>
+
+<label>Analysis Type:</label>
+<select id="analysisType">
+    <option value="race">Race</option>
+    <option value="category">Law Category</option>
+    <option value="age">Age Group</option>
+    <option value="sex">Sex</option>
+</select>
+
+<button onclick="updateChart()">Apply Filter</button>
+
+<div id="chart"></div>
+
+<div class="analysis">
+    <h2>Analysis</h2>
+    <p id="analysisText">
+        This chart displays arrest data.
+    </p>
+</div>
+
+<script>
+
+let raceData = {
+    "BLACK": 520,
+    "WHITE HISPANIC": 310,
+    "BLACK HISPANIC": 450,
+    "ASIAN / PACIFIC ISLANDER": 120,
+    "WHITE": 255,
+};
+
+let categoryData = {
+    "F": 300,
+    "M": 700,
+};
+
+let ageGroupData = {
+    "18-24": 250,
+    "25-44": 600,
+    "45-64": 180,
+};
+
+let sexData = {
+    "M": 850,
+    "F": 280
+};
+
+let chart;
+
+function createChart(type){
+
+    chart = c3.generate({
+        bindto:"#chart",
+
+        data:{
+            columns:[
+                ["Black", raceData["BLACK"]],
+                ["White Hispanic", raceData["WHITE HISPANIC"]],
+                ["Black Hispanic", raceData["BLACK HISPANIC"]],
+                ["Asian/Pacific Islander", raceData["ASIAN / PACIFIC ISLANDER"]],
+                ["White", raceData["WHITE"]],
+            ],
+            type:type
+        }
+    });
+}
+
+function updateChart(){
+
+    let chartType =
+        document.getElementById("chartType").value;
+
+    let analysisType =
+        document.getElementById("analysisType").value;
+
+    let columns = [];
+
+    if(analysisType == "race"){
+
+        columns = [
+            ["Black", raceData["BLACK"]],
+            ["White Hispanic", raceData["WHITE HISPANIC"]],
+            ["Black Hispanic", raceData["BLACK HISPANIC"]],
+            ["Asian/Pacific Islander", raceData["ASIAN / PACIFIC ISLANDER"]],
+            ["White", raceData["WHITE"]],
+        ];
+
+        document.getElementById("analysisText").innerHTML =
+        "This chart compares arrests by race.";
+    }
+
+    else if(analysisType == "category"){
+
+        columns = [
+            ["Felony", categoryData["F"]],
+            ["Misdemeanor", categoryData["M"]],
+            ["Violation", categoryData["V"]]
+        ];
+
+        document.getElementById("analysisText").innerHTML =
+        "This chart compares arrests by law category.";
+    }
+
+    else if(analysisType == "age"){
+
+        columns = [
+            ["18-24", ageGroupData["18-24"]],
+            ["25-44", ageGroupData["25-44"]],
+            ["45-64", ageGroupData["45-64"]],
+        ];
+
+        document.getElementById("analysisText").innerHTML =
+        "This chart compares arrests by age group.";
+    }
+
+    else if(analysisType == "sex"){
+
+        columns = [
+            ["Male", sexData["M"]],
+            ["Female", sexData["F"]]
+        ];
+
+        document.getElementById("analysisText").innerHTML =
+        "This chart compares arrests by sex.";
+    }
+
+    chart.destroy();
+
+    chart = c3.generate({
+        bindto:"#chart",
+
+        data:{
+            columns:columns,
+            type:chartType
+        },
+
+        zoom:{
+            enabled:true
+        }
+    });
+}
+
+createChart("bar");
+
+</script>
